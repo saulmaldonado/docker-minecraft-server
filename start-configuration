@@ -88,6 +88,8 @@ export ORIGINAL_TYPE=${TYPE^^}
 
 if isTrue "${ENABLE_AUTOPAUSE}"; then
   ${SCRIPTS:-/}start-autopause
+elif isTrue "${ENABLE_AUTOSHUTDOWN}"; then
+  ${SCRIPTS:-/}start-autoshutdown
 fi
 
 log "Resolving type given ${TYPE}"

@@ -93,6 +93,14 @@ function logAutopauseAction() {
   echo "[$(date -Iseconds)] [Autopause] $*"
 }
 
+function logAutoshutdown() {
+  echo "[Autoshutdown loop] $*"
+}
+
+function logAutoshutdownAction() {
+  echo "[$(date -Iseconds)] [Autoshutdown] $*"
+}
+
 function normalizeMemSize() {
   local scale=1
   case ${1,,} in

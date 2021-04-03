@@ -1,0 +1,28 @@
+#!/bin/bash
+
+. ${SCRIPTS:-/}start-utils
+
+log "Autoshutdown functionality enabled"
+
+if ! [[ $AUTOSHUTDOWN_PERIOD =~ ^[0-9]+$ ]]; then
+  AUTOSHUTDOWN_PERIOD=10
+  export AUTOSHUTDOWN_PERIOD
+  log "Warning: AUTOSHUTDOWN_PERIOD is not numeric, set to 10 (seconds)"
+fi
+if [ "$AUTOSHUTDOWN_PERIOD" -eq "0" ] ; then
+  AUTOSHUTDOWN_PERIOD=10
+  export AUTOSHUTDOWN_PERIOD
+  log "Warning: AUTOSHUTDOWN_PERIOD must not be 0, set to 10 (seconds)"
+fi
+if ! [[ $AUTOSHUTDOWN_TIMEOUT_EST =~ ^[0-9]+$ ]] ; then
+  AUTOSHUTDOWN_TIMEOUT_EST=3600
+  export AUTOSHUTDOWN_TIMEOUT_EST
+  log "Warning: AUTOSHUTDOWN_TIMEOUT_EST is not numeric, set to 3600 (seconds)"
+fi
+if ! [[ $AUTOSHUTDOWN_TIMEOUT_INIT =~ ^[0-9]+$ ]] ; then
+  AUTOSHUTDOWN_TIMEOUT_INIT=600
+  export AUTOSHUTDOWN_TIMEOUT_INIT
+  log "Warning: AUTOSHUTDOWN_TIMEOUT_INIT is not numeric, set to 600 (seconds)"
+fi
+
+/autoshutdown/autoshutdown-daemon.sh &
