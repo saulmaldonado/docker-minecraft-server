@@ -17,5 +17,5 @@ if [[ $( ps -a -o stat,comm | grep 'java' | awk '{ print $1 }') =~ ^S.*$ ]] ; th
 
   # finally pause the process
   logAutoshutdownAction "Shutting down container"
-  pkill -KILL java
+  pkill -TERM mc-server-runner
 fi
